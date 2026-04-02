@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+	<flow name="craftFlow" doc:id="7b857235-a9bd-4bef-b8f6-ff75bad847f1" >
+		<http:listener doc:name="Listener" doc:id="7d8ae75d-87d1-450d-8f4c-a63ffa00a811" path="/third" config-ref="CraftHttp"/>
+		<db:select doc:name="Select" doc:id="77d0aa2c-f44a-4bb1-be13-f8b8428e0206" config-ref="CraftDatabase">
+			<db:sql ><![CDATA[select * from craftsoft.employees;]]></db:sql>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="d0e20dc3-b40f-4af9-acd4-9150066e35fb" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<jms:publish doc:name="Publish" doc:id="6559b1e6-4173-48e8-83fb-da261b600bfc" destination="craftemployees" config-ref="CraftJMS"/>
+	</flow>
+</mule>

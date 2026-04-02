@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd">
+	<http:listener-config name="CraftHttp" doc:name="HTTP Listener config" doc:id="fe369811-5445-4301-b65d-78f2829dd713" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<db:config name="CraftDatabase" doc:name="Database Config" doc:id="37714aa2-d44a-460d-a610-636b25ab2265" >
+		<db:my-sql-connection host="${db.host}" port="${db.port}" user="${db.username}" password="${db.password}" />
+	</db:config>
+	<jms:config name="CraftJMS" doc:name="JMS Config" doc:id="68da27b4-8d54-441c-90c9-304f5983bed3" >
+		<jms:active-mq-connection username="${jms.username}" password="${jms.password}" >
+			<jms:factory-configuration brokerUrl="${jms.broker_url}" />
+		</jms:active-mq-connection>
+	</jms:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="ee4499a7-4033-4660-ab7c-d579c02eddc2" file="${env}.properties" />
+	<global-property doc:name="Global Property" doc:id="39c9fd85-b103-48a0-b212-4f0caa60f17c" name="env" value="production" />
+</mule>

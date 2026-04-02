@@ -1,0 +1,12 @@
+http:
+  host: "localhost"
+  port: "8089"
+db:
+  host: "localhost"
+  port: "3306"
+  username: "root"
+  password: "root"
+jms:
+  username: "admin"
+  password: "admin"
+  broker_url: "tcp://localhost:61616"
