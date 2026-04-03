@@ -1,0 +1,4 @@
+http:
+  host:   port: db:
+  host:   port:   username:   password: jms:
+  username:   password:   broker_url: 

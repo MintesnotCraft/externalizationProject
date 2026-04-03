@@ -1,0 +1,12 @@
+http:
+  host: "![u6Sevq3Ag4+6qL6ONIrJsA==]"
+  port: "![4QtJ/yqK2pg=]"
+db:
+  host: "![u6Sevq3Ag4+6qL6ONIrJsA==]"
+  port: "![uxtgluD4taU=]"
+  username: "![/kUqTQeeAZQ=]"
+  password: "![/kUqTQeeAZQ=]"
+jms:
+  username: "![ww4ImFS2DOA=]"
+  password: "![ww4ImFS2DOA=]"
+  broker_url: "![AvAXIbGVExiyaAF/muES54NGqJpAs/W+]"
